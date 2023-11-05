@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 搜索栏和按钮 -->
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@color/blue_and_gray"
+        android:gravity="center">
+
+        <!-- 空白占位视图（左边）-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 搜索栏 -->
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext_bg"
+            android:hint="  Search"
+            android:padding="8dp" />
+
+        <!-- 空白占位视图（中间）-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 按钮1 -->
+        <ImageButton
+            android:id="@+id/button1"
+            android:layout_width="42dp"
+            android:layout_height="33dp"
+            android:background="@drawable/bell_icon" />
+
+        <!-- 空白占位视图（中间）-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 按钮2 -->
+        <ImageButton
+            android:id="@+id/button2"
+            android:layout_width="34dp"
+            android:layout_height="33dp"
+            android:background="@drawable/check_icon" />
+
+        <!-- 空白占位视图（右边）-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Practise"
+        android:layout_width="match_parent"
+        android:layout_height="146dp"
+        android:layout_below="@+id/search_layout"
+        android:layout_marginTop="-1dp"
+        android:orientation="vertical">
+
+        <!-- 第一行：图标和艺术字，左对齐 -->
+
+        <!-- 第二行：三个小照片，等宽度，不受图片大小影响 -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="48dp"
+
+                />
+            <!-- 图标 -->
+
+
+            <ImageView
+                android:layout_width="29dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/practise_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="姿态训练" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <!-- 左边空白 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- 左边空白，宽度为20dp -->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <!-- 第一个ImageView -->
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/practise1" />
+
+                <!-- 中间空白，宽度为20dp -->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <!-- 第二个ImageView（具有圆角背景） -->
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/rounded_square"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/practise2" />
+
+                <!-- 右边空白，宽度为20dp -->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <!-- 第三个ImageView -->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/practise3" />
+
+                <!-- 右边空白，宽度为20dp -->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Food"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_below="@+id/Practise"
+        android:layout_marginTop="1dp"
+        android:gravity="start"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="48dp" />
+        <!-- 图标 -->
+
+        <!-- 艺术字 -->
+
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/food_icon" />
+
+        <TextView
+            android:layout_width="107dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:text="精选低卡" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="390dp"
+        android:layout_height="216dp"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_below="@+id/Food"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-2dp"
+        android:background="@drawable/rounded_scrollview_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+                <!-- 左边图片 -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sample_image1" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="48dp" />
+
+                <!-- 右边布局 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 文字 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="大标题"
+                        android:textSize="20sp" />
+
+                    <!-- 标签 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小标签"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_and_gray"
+        android:orientation="horizontal">
+
+        <!-- Home Navigation -->
+        <LinearLayout
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/darker_blue_and_gray"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:src="@drawable/home_icon" />
+
+            <TextView
+                android:id="@+id/home_nav"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="主页" />
+        </LinearLayout>
+
+        <!-- Diary Navigation -->
+        <LinearLayout
+            android:id="@+id/diary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:src="@drawable/diary_icon" />
+
+            <TextView
+                android:id="@+id/diary_nav"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="日记" />
+        </LinearLayout>
+
+        <!-- Library Navigation -->
+        <LinearLayout
+            android:id="@+id/action"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:src="@drawable/library_icon" />
+
+            <TextView
+                android:id="@+id/library_nav"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="动作库" />
+        </LinearLayout>
+
+        <!-- Profile Navigation -->
+        <LinearLayout
+            android:id="@+id/person"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:src="@drawable/profile_icon" />
+
+            <TextView
+                android:id="@+id/profile_nav"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="个人" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
