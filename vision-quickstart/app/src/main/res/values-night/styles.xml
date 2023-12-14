@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 日间主题 -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+        <!-- 其他主题属性 -->
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimation</item>
+    </style>
+
+    <style name="AppTheme.WindowAnimation">
+        <item name="android:activityOpenEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:activityOpenExitAnimation">@android:anim/slide_out_right</item>
+        <item name="android:activityCloseEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@android:anim/slide_out_right</item>
+    </style>
+
+    <!-- 夜间主题 -->
+    <style name="AppTheme.Dark." parent="Theme.AppCompat.DayNight">
+        <!-- 其他主题属性 -->
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimation</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+    </style>
+
+    <!-- 圆形按钮样式 -->
+    <style name="RoundedFAB" parent="Widget.MaterialComponents.FloatingActionButton">
+        <!-- 添加其他按钮样式设置 -->
+    </style>
+
+    <!-- 圆形形状样式 -->
+    <style name="RoundedShape">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- 自定义日历视图主题 -->
+    <style name="CustomCalendarView" parent="android:Theme.DeviceDefault">
+        <item name="android:calendarViewStyle">@style/CustomCalendarViewStyle</item>
+    </style>
+
+    <!-- 自定义日历视图样式 -->
+    <style name="CustomCalendarViewStyle" parent="android:Widget.CalendarView">
+        <item name="android:dateTextAppearance">@style/CustomCalendarViewDateText</item>
+    </style>
+
+    <!-- 自定义日期文本样式 -->
+    <style name="CustomCalendarViewDateText" parent="android:TextAppearance.Small">
+        <!-- 调整日期文本颜色 -->
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>

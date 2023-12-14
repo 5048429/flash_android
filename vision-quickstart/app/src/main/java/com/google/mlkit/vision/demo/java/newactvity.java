@@ -15,9 +15,9 @@ public class newactvity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pic1);
+        setContentView(R.layout.activity_action);
 
-        ImageView imageView = findViewById(R.id.image1);
+        ImageView imageView = findViewById(R.id.fab);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

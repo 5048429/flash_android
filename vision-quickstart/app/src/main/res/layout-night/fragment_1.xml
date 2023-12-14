@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".java.Fragment1">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.SearchView
+                android:queryHint="搜索"
+                android:iconifiedByDefault="false"
+                android:id="@+id/mSearchView"
+                android:layout_width="350dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:layout_height="wrap_content" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imgCard"
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="5dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imgCard1"
+                android:layout_width="350dp"
+                android:layout_height="100dp"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="5dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/gradient_color" />
+
+                    <!-- TextView for text overlay -->
+                    <TextView
+                        android:id="@+id/chattextview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Hello,this is Chatgpt.\nHow can I assist you today?"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </FrameLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Title and "查看更多" -->
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp">
+
+                <!-- Icon -->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/noodles"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"/>
+
+                <!-- Title -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="低卡精选"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"/>
+
+                <!-- "查看更多" TextView -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看更多 >>"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onViewMoreClicked"/>
+            </LinearLayout>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager2"
+                android:layout_width="345dp"
+                android:layout_height="247dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

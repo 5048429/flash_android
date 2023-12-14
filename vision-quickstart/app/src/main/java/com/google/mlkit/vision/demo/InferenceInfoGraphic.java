@@ -64,11 +64,11 @@ public class InferenceInfoGraphic extends GraphicOverlay.Graphic {
     float x = TEXT_SIZE * 0.5f;
     float y = TEXT_SIZE * 1.5f;
 
-    canvas.drawText(
-        "画面尺寸 " + overlay.getImageHeight() + "x" + overlay.getImageWidth(),
-        x,
-        y,
-        textPaint);
+//    canvas.drawText(
+//        "画面尺寸 " + overlay.getImageHeight() + "x" + overlay.getImageWidth(),
+//        x,
+//        y,
+//        textPaint);
 
     if (!showLatencyInfo) {
       return;

@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -27,9 +28,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import androidx.core.app.ActivityCompat;
@@ -67,25 +70,16 @@ import java.util.List;
 /** Live preview demo for ML Kit APIs. */
 @KeepName
 public final class LivePreviewActivity extends AppCompatActivity
-    implements OnRequestPermissionsResultCallback,
+        implements OnRequestPermissionsResultCallback,
         OnItemSelectedListener,
         CompoundButton.OnCheckedChangeListener {
   private static final String OBJECT_DETECTION = "目标检测";
-//  private static final String OBJECT_DETECTION_CUSTOM = "自定义目标检测";
-//  private static final String CUSTOM_AUTOML_OBJECT_DETECTION =
-//      "自定义AutoML目标检测（花卉）";
-//  private static final String FACE_DETECTION = "人脸检测";
-//  private static final String BARCODE_SCANNING = "条形码扫描";
-//  private static final String IMAGE_LABELING = "图像分类";
-//  private static final String IMAGE_LABELING_CUSTOM = "自定义图像分类 (鸟类)";
-//  private static final String CUSTOM_AUTOML_LABELING = "自定义图像分类(花卉)";
-//  private static final String POSE_DETECTION = "FlashLight-AI健身-深蹲计数";
-//  private static final String SELFIE_SEGMENTATION = "人像抠图";
-//  private static final String TEXT_RECOGNITION_LATIN = "英文文字检测";
-//  private static final String TEXT_RECOGNITION_CHINESE = "中文文字检测（Beta）";
-//  private static final String TEXT_RECOGNITION_DEVANAGARI = "梵文文字检测 (Beta)";
-//  private static final String TEXT_RECOGNITION_JAPANESE = "日文文字检测 (Beta)";
-//  private static final String TEXT_RECOGNITION_KOREAN = "韩文文字检测 (Beta)";
+  private static final String POSE_DETECTION1= "深蹲";
+
+  private static final String POSE_DETECTION2="引体";
+
+  private static final String POSE_DETECTION3="肩推";
+
 
   private static final String TAG = "LivePreviewActivity";
   private static final int PERMISSION_REQUESTS = 1;
@@ -94,6 +88,39 @@ public final class LivePreviewActivity extends AppCompatActivity
   private CameraSourcePreview preview;
   private GraphicOverlay graphicOverlay;
   private String selectedModel = OBJECT_DETECTION;
+  private TextView lastClickedTextView; // Add this line as a class variable
+  private PoseDetectorOptionsBase createPoseOptionsForAction1() {
+    // Customize PoseDetectorOptionsBase for Action 1
+    return PreferenceUtils.getPoseDetectorOptionsForLivePreview(this);
+  }
+
+  private PoseDetectorOptionsBase createPoseOptionsForAction2() {
+    // Customize PoseDetectorOptionsBase for Action 2
+    return PreferenceUtils.getPoseDetectorOptionsForLivePreview(this);
+  }
+  private void setupPoseProcessor(
+          PoseDetectorOptionsBase poseDetectorOptions, int actionNumber) {
+    Log.i(TAG, "Using Pose Detector for Action " + actionNumber + " with options " + poseDetectorOptions);
+    boolean shouldShowInFrameLikelihood =
+            PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this);
+    boolean visualizeZ = PreferenceUtils.shouldPoseDetectionVisualizeZ(this);
+    boolean rescaleZ = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this);
+    boolean runClassification = PreferenceUtils.shouldPoseDetectionRunClassification(this);
+    cameraSource.setMachineLearningFrameProcessor(
+            new PoseDetectorProcessor(
+                    this,
+                    poseDetectorOptions,
+                    "aaa",
+                    shouldShowInFrameLikelihood,
+                    visualizeZ,
+                    rescaleZ,
+                    runClassification,
+                    /* isStreamMode = */ true));
+  }
+  private PoseDetectorOptionsBase createPoseOptionsForAction3() {
+    // Customize PoseDetectorOptionsBase for Action 3
+    return PreferenceUtils.getPoseDetectorOptionsForLivePreview(this);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -111,50 +138,105 @@ public final class LivePreviewActivity extends AppCompatActivity
       Log.d(TAG, "graphicOverlay is null");
     }
 
-    Spinner spinner = findViewById(R.id.spinner);
-    List<String> options = new ArrayList<>();
-    options.add(OBJECT_DETECTION);
-//    options.add(POSE_DETECTION);
-//    options.add(OBJECT_DETECTION_CUSTOM);
-//    options.add(CUSTOM_AUTOML_OBJECT_DETECTION);
-//    options.add(FACE_DETECTION);
-//    options.add(BARCODE_SCANNING);
-//    options.add(IMAGE_LABELING);
-//    options.add(IMAGE_LABELING_CUSTOM);
-//    options.add(CUSTOM_AUTOML_LABELING);
-//
-//    options.add(SELFIE_SEGMENTATION);
-//    options.add(TEXT_RECOGNITION_LATIN);
-//    options.add(TEXT_RECOGNITION_CHINESE);
-//    options.add(TEXT_RECOGNITION_DEVANAGARI);
-//    options.add(TEXT_RECOGNITION_JAPANESE);
-//    options.add(TEXT_RECOGNITION_KOREAN);
+    TextView objectDetectionTextView = findViewById(R.id.textObjectDetection);
+    TextView poseDetectionTextView1 = findViewById(R.id.shendun);
+    TextView poseDetectionTextView2 = findViewById(R.id.yingti);
+    TextView poseDetectionTextView3 = findViewById(R.id.jiantui);
+    objectDetectionTextView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        updateTextViewBackgroundColor(objectDetectionTextView);
+        selectedModel = OBJECT_DETECTION;
+        Log.d(TAG, "选择的模型：" + selectedModel);
+        preview.stop();
+        if (allPermissionsGranted()) {
+          createCameraSource(selectedModel);
+          startCameraSource();
+        } else {
+          getRuntimePermissions();
+        }
+      }
+    });
+    poseDetectionTextView1.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        updateTextViewBackgroundColor(poseDetectionTextView1);
+        selectedModel = POSE_DETECTION1;
+        Log.d(TAG, "选择的模型：" + selectedModel);
+        preview.stop();
+        if (allPermissionsGranted()) {
+          createCameraSource(selectedModel);
+          startCameraSource();
+        } else {
+          getRuntimePermissions();
+        }
+      }
+    });
 
-    // Creating adapter for spinner
-    ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_style, options);
-    // Drop down layout style - list view with radio button
-    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    // attaching data adapter to spinner
-    spinner.setAdapter(dataAdapter);
-    spinner.setOnItemSelectedListener(this);
+
+    poseDetectionTextView2.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        updateTextViewBackgroundColor(poseDetectionTextView2);
+        selectedModel = POSE_DETECTION2;
+        Log.d(TAG, "选择的模型：" + selectedModel);
+        preview.stop();
+        if (allPermissionsGranted()) {
+          createCameraSource(selectedModel);
+          startCameraSource();
+        } else {
+          getRuntimePermissions();
+        }
+      }
+    });
+
+
+    poseDetectionTextView3.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        updateTextViewBackgroundColor(poseDetectionTextView3);
+        selectedModel = POSE_DETECTION3;
+        Log.d(TAG, "选择的模型：" + selectedModel);
+        preview.stop();
+        if (allPermissionsGranted()) {
+          createCameraSource(selectedModel);
+          startCameraSource();
+        } else {
+          getRuntimePermissions();
+        }
+      }
+    });
 
     ToggleButton facingSwitch = findViewById(R.id.facing_switch);
     facingSwitch.setOnCheckedChangeListener(this);
 
     ImageView settingsButton = findViewById(R.id.settings_button);
     settingsButton.setOnClickListener(
-        v -> {
-          Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-          intent.putExtra(
-              SettingsActivity.EXTRA_LAUNCH_SOURCE, SettingsActivity.LaunchSource.LIVE_PREVIEW);
-          startActivity(intent);
-        });
+            v -> {
+              Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+              intent.putExtra(
+                      SettingsActivity.EXTRA_LAUNCH_SOURCE, SettingsActivity.LaunchSource.LIVE_PREVIEW);
+              startActivity(intent);
+            });
 
     if (allPermissionsGranted()) {
       createCameraSource(selectedModel);
     } else {
       getRuntimePermissions();
     }
+  }
+  // Add this method to update the background color of the clicked TextView
+  private void updateTextViewBackgroundColor(TextView textView) {
+    // Reset background color for the last clicked TextView
+    if (lastClickedTextView != null) {
+      lastClickedTextView.setBackgroundColor(Color.TRANSPARENT);  // or set to the original color
+    }
+
+    // Set the background color for the current clicked TextView
+    textView.setBackgroundColor(Color.parseColor("#2589FF"));
+
+    // Update the last clicked TextView
+    lastClickedTextView = textView;
   }
 
   @Override
@@ -202,127 +284,83 @@ public final class LivePreviewActivity extends AppCompatActivity
         case OBJECT_DETECTION:
           Log.i(TAG, "Using Object Detector Processor");
           ObjectDetectorOptions objectDetectorOptions =
-              PreferenceUtils.getObjectDetectorOptionsForLivePreview(this);
+                  PreferenceUtils.getObjectDetectorOptionsForLivePreview(this);
           cameraSource.setMachineLearningFrameProcessor(
-              new ObjectDetectorProcessor(this, objectDetectorOptions));
+                  new ObjectDetectorProcessor(this, objectDetectorOptions));
           break;
-//        case OBJECT_DETECTION_CUSTOM:
-//          Log.i(TAG, "Using Custom Object Detector Processor");
-//          LocalModel localModel =
-//              new LocalModel.Builder()
-//                  .setAssetFilePath("custom_models/object_labeler.tflite")
-//                  .build();
-//          CustomObjectDetectorOptions customObjectDetectorOptions =
-//              PreferenceUtils.getCustomObjectDetectorOptionsForLivePreview(this, localModel);
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new ObjectDetectorProcessor(this, customObjectDetectorOptions));
-//          break;
-//        case CUSTOM_AUTOML_OBJECT_DETECTION:
-//          Log.i(TAG, "Using Custom AutoML Object Detector Processor");
-//          LocalModel customAutoMLODTLocalModel =
-//              new LocalModel.Builder().setAssetManifestFilePath("automl/manifest.json").build();
-//          CustomObjectDetectorOptions customAutoMLODTOptions =
-//              PreferenceUtils.getCustomObjectDetectorOptionsForLivePreview(
-//                  this, customAutoMLODTLocalModel);
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new ObjectDetectorProcessor(this, customAutoMLODTOptions));
-//          break;
-//        case TEXT_RECOGNITION_LATIN:
-//          Log.i(TAG, "Using on-device Text recognition Processor for Latin.");
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new TextRecognitionProcessor(this, new TextRecognizerOptions.Builder().build()));
-//          break;
-//        case TEXT_RECOGNITION_CHINESE:
-//          Log.i(TAG, "Using on-device Text recognition Processor for Latin and Chinese.");
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new TextRecognitionProcessor(
-//                  this, new ChineseTextRecognizerOptions.Builder().build()));
-//          break;
-//        case TEXT_RECOGNITION_DEVANAGARI:
-//          Log.i(TAG, "Using on-device Text recognition Processor for Latin and Devanagari.");
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new TextRecognitionProcessor(
-//                  this, new DevanagariTextRecognizerOptions.Builder().build()));
-//          break;
-//        case TEXT_RECOGNITION_JAPANESE:
-//          Log.i(TAG, "Using on-device Text recognition Processor for Latin and Japanese.");
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new TextRecognitionProcessor(
-//                  this, new JapaneseTextRecognizerOptions.Builder().build()));
-//          break;
-//        case TEXT_RECOGNITION_KOREAN:
-//          Log.i(TAG, "Using on-device Text recognition Processor for Latin and Korean.");
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new TextRecognitionProcessor(
-//                  this, new KoreanTextRecognizerOptions.Builder().build()));
-//          break;
-//        case FACE_DETECTION:
-//          Log.i(TAG, "Using Face Detector Processor");
-//          cameraSource.setMachineLearningFrameProcessor(new FaceDetectorProcessor(this));
-//          break;
-//        case BARCODE_SCANNING:
-//          Log.i(TAG, "Using Barcode Detector Processor");
-//          cameraSource.setMachineLearningFrameProcessor(new BarcodeScannerProcessor(this));
-//          break;
-//        case IMAGE_LABELING:
-//          Log.i(TAG, "Using Image Label Detector Processor");
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new LabelDetectorProcessor(this, ImageLabelerOptions.DEFAULT_OPTIONS));
-//          break;
-//        case IMAGE_LABELING_CUSTOM:
-//          Log.i(TAG, "Using Custom Image Label Detector Processor");
-//          LocalModel localClassifier =
-//              new LocalModel.Builder()
-//                  .setAssetFilePath("custom_models/bird_classifier.tflite")
-//                  .build();
-//          CustomImageLabelerOptions customImageLabelerOptions =
-//              new CustomImageLabelerOptions.Builder(localClassifier).build();
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new LabelDetectorProcessor(this, customImageLabelerOptions));
-//          break;
-//        case CUSTOM_AUTOML_LABELING:
-//          Log.i(TAG, "Using Custom AutoML Image Label Detector Processor");
-//          LocalModel customAutoMLLabelLocalModel =
-//              new LocalModel.Builder().setAssetManifestFilePath("automl/manifest.json").build();
-//          CustomImageLabelerOptions customAutoMLLabelOptions =
-//              new CustomImageLabelerOptions.Builder(customAutoMLLabelLocalModel)
-//                  .setConfidenceThreshold(0)
-//                  .build();
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new LabelDetectorProcessor(this, customAutoMLLabelOptions));
-//          break;
-//        case POSE_DETECTION:
-//          PoseDetectorOptionsBase poseDetectorOptions =
-//              PreferenceUtils.getPoseDetectorOptionsForLivePreview(this);
-//          Log.i(TAG, "Using Pose Detector with options " + poseDetectorOptions);
-//          boolean shouldShowInFrameLikelihood =
-//              PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this);
-//          boolean visualizeZ = PreferenceUtils.shouldPoseDetectionVisualizeZ(this);
-//          boolean rescaleZ = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this);
-//          boolean runClassification = PreferenceUtils.shouldPoseDetectionRunClassification(this);
-//          cameraSource.setMachineLearningFrameProcessor(
-//              new PoseDetectorProcessor(
-//                  this,
-//                  poseDetectorOptions,
-//                  shouldShowInFrameLikelihood,
-//                  visualizeZ,
-//                  rescaleZ,
-//                  runClassification,
-//                  /* isStreamMode = */ true));
-//          break;
-//        case SELFIE_SEGMENTATION:
-//          cameraSource.setMachineLearningFrameProcessor(new SegmenterProcessor(this));
-//          break;
+
+        case POSE_DETECTION1:
+          PoseDetectorOptionsBase poseDetectorOptions1 = createPoseOptionsForAction1();
+          setupPoseProcessor(poseDetectorOptions1, 1);
+          Log.i(TAG, "Using Pose Detector with options " + poseDetectorOptions1);
+
+
+          boolean shouldShowInFrameLikelihood1 = PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this);
+          boolean visualizeZ1 = PreferenceUtils.shouldPoseDetectionVisualizeZ(this);
+          boolean rescaleZ1 = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this);
+          boolean runClassification1 = PreferenceUtils.shouldPoseDetectionRunClassification(this);
+          cameraSource.setMachineLearningFrameProcessor(
+                  new PoseDetectorProcessor(
+                          this,
+                          poseDetectorOptions1,
+                          "shendun",
+                          shouldShowInFrameLikelihood1,
+                          visualizeZ1,
+                          rescaleZ1,
+                          runClassification1,
+                          /* isStreamMode = */ true));
+
+        case POSE_DETECTION2:
+          PoseDetectorOptionsBase poseDetectorOptions2 = createPoseOptionsForAction1();
+          setupPoseProcessor(poseDetectorOptions2, 1);
+          Log.i(TAG, "Using Pose Detector with options " + poseDetectorOptions2);
+
+
+          boolean shouldShowInFrameLikelihood2 = PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this);
+          boolean visualizeZ2 = PreferenceUtils.shouldPoseDetectionVisualizeZ(this);
+          boolean rescaleZ2 = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this);
+          boolean runClassification2 = PreferenceUtils.shouldPoseDetectionRunClassification(this);
+          cameraSource.setMachineLearningFrameProcessor(
+                  new PoseDetectorProcessor(
+                          this,
+                          poseDetectorOptions2,
+                          "yingti",
+                          shouldShowInFrameLikelihood2,
+                          visualizeZ2,
+                          rescaleZ2,
+                          runClassification2,
+                          /* isStreamMode = */ true));
+        case POSE_DETECTION3:
+          PoseDetectorOptionsBase poseDetectorOptions3 = createPoseOptionsForAction1();
+          setupPoseProcessor(poseDetectorOptions3, 1);
+          Log.i(TAG, "Using Pose Detector with options " + poseDetectorOptions3);
+
+
+          boolean shouldShowInFrameLikelihood3 = PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this);
+          boolean visualizeZ3 = PreferenceUtils.shouldPoseDetectionVisualizeZ(this);
+          boolean rescaleZ3 = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this);
+          boolean runClassification3 = PreferenceUtils.shouldPoseDetectionRunClassification(this);
+          cameraSource.setMachineLearningFrameProcessor(
+                  new PoseDetectorProcessor(
+                          this,
+                          poseDetectorOptions3,
+                          "jiantui",
+                          shouldShowInFrameLikelihood3,
+                          visualizeZ3,
+                          rescaleZ3,
+                          runClassification3,
+                          /* isStreamMode = */ true));
+          break;
         default:
           Log.e(TAG, "Unknown model: " + model);
       }
     } catch (RuntimeException e) {
       Log.e(TAG, "Can not create image processor: " + model, e);
       Toast.makeText(
-              getApplicationContext(),
-              "Can not create image processor: " + e.getMessage(),
-              Toast.LENGTH_LONG)
-          .show();
+                      getApplicationContext(),
+                      "Can not create image processor: " + e.getMessage(),
+                      Toast.LENGTH_LONG)
+              .show();
     }
   }
 
@@ -375,8 +413,8 @@ public final class LivePreviewActivity extends AppCompatActivity
   private String[] getRequiredPermissions() {
     try {
       PackageInfo info =
-          this.getPackageManager()
-              .getPackageInfo(this.getPackageName(), PackageManager.GET_PERMISSIONS);
+              this.getPackageManager()
+                      .getPackageInfo(this.getPackageName(), PackageManager.GET_PERMISSIONS);
       String[] ps = info.requestedPermissions;
       if (ps != null && ps.length > 0) {
         return ps;
@@ -407,13 +445,13 @@ public final class LivePreviewActivity extends AppCompatActivity
 
     if (!allNeededPermissions.isEmpty()) {
       ActivityCompat.requestPermissions(
-          this, allNeededPermissions.toArray(new String[0]), PERMISSION_REQUESTS);
+              this, allNeededPermissions.toArray(new String[0]), PERMISSION_REQUESTS);
     }
   }
 
   @Override
   public void onRequestPermissionsResult(
-      int requestCode, String[] permissions, int[] grantResults) {
+          int requestCode, String[] permissions, int[] grantResults) {
     Log.i(TAG, "Permission granted!");
     if (allPermissionsGranted()) {
       createCameraSource(selectedModel);
@@ -423,7 +461,7 @@ public final class LivePreviewActivity extends AppCompatActivity
 
   private static boolean isPermissionGranted(Context context, String permission) {
     if (ContextCompat.checkSelfPermission(context, permission)
-        == PackageManager.PERMISSION_GRANTED) {
+            == PackageManager.PERMISSION_GRANTED) {
       Log.i(TAG, "Permission granted: " + permission);
       return true;
     }

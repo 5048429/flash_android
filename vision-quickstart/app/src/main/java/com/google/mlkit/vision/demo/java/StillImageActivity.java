@@ -37,6 +37,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.annotation.KeepName;
 import com.google.mlkit.common.model.LocalModel;
@@ -66,6 +67,10 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.ai.ChatMessageListener;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /** Activity demonstrating different image detector features with a still image from camera. */
 @KeepName
@@ -112,13 +117,13 @@ public final class StillImageActivity extends AppCompatActivity {
   private int imageMaxWidth;
   private int imageMaxHeight;
   private VisionImageProcessor imageProcessor;
+  String id = "";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_still_image);
-
     findViewById(R.id.select_image_button)
         .setOnClickListener(
             view -> {
@@ -509,6 +514,7 @@ public final class StillImageActivity extends AppCompatActivity {
               new PoseDetectorProcessor(
                   this,
                   poseDetectorOptions,
+                  "stillimage",
                   shouldShowInFrameLikelihood,
                   visualizeZ,
                   rescaleZ,

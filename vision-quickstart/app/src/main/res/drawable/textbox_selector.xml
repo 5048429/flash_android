@@ -1,0 +1,23 @@
+<!-- res/drawable/textbox_selector.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Pressed state -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <!-- Set the background color when pressed -->
+            <solid android:color="#8888" />
+            <!-- You can also add other attributes, such as corner radius, if needed -->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Set the default background color -->
+            <solid android:color="#FFFFFF" />
+            <!-- You can also add other attributes, such as corner radius, if needed -->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>

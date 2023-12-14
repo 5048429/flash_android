@@ -417,6 +417,7 @@ public final class CameraXLivePreviewActivity extends AppCompatActivity
               new PoseDetectorProcessor(
                   this,
                   poseDetectorOptions,
+                  "aaa",
                   shouldShowInFrameLikelihood,
                   visualizeZ,
                   rescaleZ,

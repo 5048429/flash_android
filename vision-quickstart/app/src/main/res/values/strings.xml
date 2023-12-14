@@ -137,10 +137,14 @@
     <!-- Strings for pose classification preference. -->
     <string name="pref_title_pose_detector_run_classification" translatable="false">深蹲计数模式</string>
     <string name="pref_key_pose_detector_run_classification" translatable="false">pdrc</string>
-    <string name="pref_summary_pose_detector_run_classification" translatable="false">深蹲、俯卧撑、仰卧起坐、引体向上、高抬腿、平板支撑、压腿，AI健身计数。同济子豪兄：https://space.bilibili.com/1900783</string>
+    <string name="pref_summary_pose_detector_run_classification" translatable="false">深蹲、俯卧撑、仰卧起坐、引体向上、高抬腿、平板支撑、压腿，AI健身计数。</string>
 
     <!-- Strings for segmentation preference. -->
     <string name="pref_title_segmentation_raw_size_mask" translatable="false">开启原始尺寸mask</string>
     <string name="pref_key_segmentation_raw_size_mask" translatable="false">srsm</string>
 
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

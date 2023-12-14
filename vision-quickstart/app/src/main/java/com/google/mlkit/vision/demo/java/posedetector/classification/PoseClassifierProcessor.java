@@ -37,7 +37,7 @@ import java.util.Locale;
 public class PoseClassifierProcessor {
   private static final String TAG = "PoseClassifierProcessor";
 //  private static final String POSE_SAMPLES_FILE = "pose/fitness_pose_samples.csv";
-  private static final String POSE_SAMPLES_FILE = "pose/squat_csvs_out_basic.csv";
+  private String POSE_SAMPLES_FILE = "pose/squat_csvs_out_basic.csv";
 
   // Specify classes for which we want rep counting.
   // These are the labels in the given {@code POSE_SAMPLES_FILE}. You can set your own class labels
@@ -55,10 +55,14 @@ public class PoseClassifierProcessor {
   private PoseClassifier poseClassifier;
   private String lastRepResult;
 
+  private String mode;
+
   @WorkerThread
-  public PoseClassifierProcessor(Context context, boolean isStreamMode) {
+  public PoseClassifierProcessor(Context context, boolean isStreamMode,String mode) {
     Preconditions.checkState(Looper.myLooper() != Looper.getMainLooper());
     this.isStreamMode = isStreamMode;
+    this.mode=mode;
+    this.POSE_SAMPLES_FILE="pose/"+mode+"_csvs_out_basic.csv";
     if (isStreamMode) {
       emaSmoothing = new EMASmoothing();
       repCounters = new ArrayList<>();

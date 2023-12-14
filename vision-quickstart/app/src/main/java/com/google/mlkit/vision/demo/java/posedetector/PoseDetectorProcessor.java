@@ -49,6 +49,8 @@ public class PoseDetectorProcessor
   private final Context context;
   private final Executor classificationExecutor;
 
+  private String mode;
+
   private PoseClassifierProcessor poseClassifierProcessor;
   /** Internal class to hold Pose and classification results. */
   protected static class PoseWithClassification {
@@ -72,12 +74,14 @@ public class PoseDetectorProcessor
   public PoseDetectorProcessor(
       Context context,
       PoseDetectorOptionsBase options,
+      String mode,
       boolean showInFrameLikelihood,
       boolean visualizeZ,
       boolean rescaleZForVisualization,
       boolean runClassification,
       boolean isStreamMode) {
     super(context);
+    this.mode=mode;
     this.showInFrameLikelihood = showInFrameLikelihood;
     this.visualizeZ = visualizeZ;
     this.rescaleZForVisualization = rescaleZForVisualization;
@@ -105,7 +109,7 @@ public class PoseDetectorProcessor
               List<String> classificationResult = new ArrayList<>();
               if (runClassification) {
                 if (poseClassifierProcessor == null) {
-                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode);
+                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode,mode);
                 }
                 classificationResult = poseClassifierProcessor.getPoseResult(pose);
               }
@@ -124,7 +128,7 @@ public class PoseDetectorProcessor
               List<String> classificationResult = new ArrayList<>();
               if (runClassification) {
                 if (poseClassifierProcessor == null) {
-                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode);
+                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode,mode);
                 }
                 classificationResult = poseClassifierProcessor.getPoseResult(pose);
               }

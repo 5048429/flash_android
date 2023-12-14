@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string-array name="pref_entries_face_detector_landmark_mode">
+    <item>@string/pref_entries_face_detector_landmark_mode_no_landmarks</item>
+    <item>@string/pref_entries_face_detector_landmark_mode_all_landmarks</item>
+  </string-array>
+
+  <string-array name="pref_entry_values_face_detector_landmark_mode">
+    <item>@string/pref_entry_values_face_detector_landmark_mode_no_landmarks</item>
+    <item>@string/pref_entry_values_face_detector_landmark_mode_all_landmarks</item>
+  </string-array>
+
+  <string-array name="pref_entries_face_detector_contour_mode">
+    <item>@string/pref_entries_face_detector_contour_mode_no_contours</item>
+    <item>@string/pref_entries_face_detector_contour_mode_all_contours</item>
+  </string-array>
+
+  <string-array name="pref_entry_values_face_detector_contour_mode">
+    <item>@string/pref_entry_values_face_detector_contour_mode_no_contours</item>
+    <item>@string/pref_entry_values_face_detector_contour_mode_all_contours</item>
+  </string-array>
+
+  <string-array name="pref_entries_face_detector_classification_mode">
+    <item>@string/pref_entries_face_detector_classification_mode_no_classifications</item>
+    <item>@string/pref_entries_face_detector_classification_mode_all_classifications</item>
+  </string-array>
+
+  <string-array name="pref_entry_values_face_detector_classification_mode">
+    <item>@string/pref_entry_values_face_detector_classification_mode_no_classifications</item>
+    <item>@string/pref_entry_values_face_detector_classification_mode_all_classifications</item>
+  </string-array>
+
+  <string-array name="pref_entries_face_detector_performance_mode">
+    <item>@string/pref_entries_face_detector_performance_mode_fast</item>
+    <item>@string/pref_entries_face_detector_performance_mode_accurate</item>
+  </string-array>
+
+  <string-array name="pref_entry_values_face_detector_performance_mode">
+    <item>@string/pref_entry_values_face_detector_performance_mode_fast</item>
+    <item>@string/pref_entry_values_face_detector_performance_mode_accurate</item>
+  </string-array>
+
+  <string-array name="pref_entries_values_pose_detector_performance_mode">
+    <item>@string/pref_entries_pose_detector_performance_mode_fast</item>
+    <item>@string/pref_entries_pose_detector_performance_mode_accurate</item>
+  </string-array>
+
+  <string-array name="pref_entry_values_pose_detector_performance_mode">
+    <item>@string/pref_entry_values_pose_detector_performance_mode_fast</item>
+    <item>@string/pref_entry_values_pose_detector_performance_mode_accurate</item>
+  </string-array>
+
+  <integer-array name="images">
+    <item>@drawable/image1_placeholder</item>
+    <item>@drawable/image2_placeholder</item>
+    <item>@drawable/image3_placeholder</item>
+    <!-- 添加更多的图片资源 -->
+  </integer-array>
+  <string-array name="image_descriptions">
+    <item>碧翠园蛋白棒代餐燕麦能量饼干减0低无糖精脂肪卡热量饱腹零食品</item>
+    <item>高蛋白嫩香鸡肉丸速食健身代餐即食低脂零食</item>
+    <item>紫薯芋泥饼控糖减低全麦早餐面包卡脂解馋蛋糕代餐饱腹休闲零食品</item>
+  </string-array>
+  <string-array name="image_name">
+    <item>蛋白棒代餐燕麦能量饼干</item>
+    <item>速食鸡肉</item>
+    <item>紫薯芋泥饼</item>
+  </string-array>
+  <string-array name="image_web">
+    <item>https://detail.tmall.com/item.htm?abbucket=8&amp;id=741117473537&amp;ns=1&amp;spm=3750m.1.0.0.4f45523cacl74D</item>
+    <item>https://detail.tmall.com/item.htm?abbucket=8&amp;id=669274507183&amp;ns=1&amp;spm=3750m.1.0.0.4f45523cacl74D</item>
+    <item>https://detail.tmall.com/item.htm?abbucket=8&amp;id=661873579767&amp;ns=1&amp;spm=3750m.1.0.0.4f45523cacl74D</item>
+  </string-array>
+</resources>

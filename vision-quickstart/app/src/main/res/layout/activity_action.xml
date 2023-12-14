@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8dp"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background"
+    tools:context=".java.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <!-- Home Navigation -->
+            <LinearLayout
+                android:id="@+id/home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:src="@drawable/home_icon" />
+
+                <TextView
+                    android:id="@+id/home_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="主页" />
+            </LinearLayout>
+
+            <!-- Diary Navigation -->
+            <LinearLayout
+                android:id="@+id/diary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:src="@drawable/diary_icon" />
+
+                <TextView
+                    android:id="@+id/diary_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="日记" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/blank"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <!-- Library Navigation -->
+            <LinearLayout
+                android:id="@+id/action"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/transparent1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:src="@drawable/library_icon" />
+
+                <TextView
+                    android:id="@+id/library_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="动作库" />
+            </LinearLayout>
+
+            <!-- Profile Navigation -->
+            <LinearLayout
+                android:id="@+id/person"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:src="@drawable/profile_icon" />
+
+                <TextView
+                    android:id="@+id/profile_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="个人" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/fab"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@+id/bottom_navigation"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="-30dp"
+            android:src="@drawable/baseline_add_24"
+            android:background="@drawable/gradient_button_color"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
