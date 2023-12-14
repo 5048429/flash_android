@@ -1,1 +1,1 @@
-# flash_android
+# 在Android Studio中运行vision-quickstatr。
