@@ -1,1 +1,1 @@
-# 在Android Studio中运行vision-quickstatr。
+# 在Android Studio中运行vision-quickstart。
